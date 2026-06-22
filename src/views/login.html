@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="outer">
+        <h1>Login to Khudka Blog</h1>
+        <form action="/login" method="post">
+            <div class="main">
+                <div class="div-email">
+                    <label for="email" class="email">Email:</label>
+                    <br>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" required  autofocus  maxlength="254">
+                </div>
+
+                <div class="div-password">
+                    <label for="password" class="password">Password:</label><br>
+                    <input type="password" id="password" name="password" placeholder="Enter your password"  autocomplete="current-password" required  minlength="8">
+                </div>
+                <div class="forgot">
+                    <a href="/forget">Forget password?</a>
+                </div>
+                <button class="submit" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="divide">or login with</div>
+        <div class="loginotpalt">
+            <button class="google" type="button" >Google</button>
+            <button class="github" type="button" >GitHub</button>
+        </div>
+        <div class="newuser">Don't have an account? <a href="/signup">Sign Up</a></div>
+
+    </div>
+
+
+
+</body>
+
+</html>

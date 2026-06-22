@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="outer">
+            <h1>Create an Account</h1>
+            <p class="para">Join thousands of readers and writers.</p> 
+          <form action="/signup" method="post">
+        <div class="main">
+
+            <div class="field-row">
+            <div class="first-name">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" class="firstname" placeholder="Enter your First Name"  required>
+                </div>
+                <div class="last-name">
+                <label for="lastname" class="lastname">Last Name:</label>
+                <input type="text"  name="lastname"  class="lastname" id="lastname" placeholder="Enter your Last Name">
+                </div>
+            </div>
+            <div class="email">
+                <label for="email">Email</label><br>
+                <input type="email" name="email"   autocomplete="email" id="email" placeholder="Enter your Email" required>
+
+            </div>
+            <div class="field-password">
+                <div class="password">
+                <label for="password">Password</label><br>
+                <input type="password" name="password"   autocomplete="new-password" id="password" placeholder="Enter your Password" required minlength="8">
+             </div>
+             <div class="confirmpassword">
+                <label for="password">Confirm Password</label><br>
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm your Password" required minlength="8">
+                </div>
+            </div>
+            <p id="error"></p>
+            <button class="submit" type="submit">Create Account</button>
+        </div>
+        </form>
+           <div class="divide">or Sing up with</div>
+        <div class="loginotpalt">
+            <button class="google" type="button" >Google</button>
+            <button class="github" type="button" >GitHub</button>
+        </div>
+        <div class="olduser">Already have an account? <a href="/login">login</a></div>
+
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>
