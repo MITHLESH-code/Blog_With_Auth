@@ -2,7 +2,8 @@ import express from "express";
 import bcrypt from "bcrypt";
 import path from "path";
 import { fileURLToPath } from "url";
-import { User } from "../../models/user.js";
+import { User } from "../models/user.js";
+import { islogedin } from "../middleware/auth.js";
 
 
 import mongoose, { Schema } from "mongoose";
@@ -53,7 +54,7 @@ router.post("/signup", async(req, resp) => {
              password : hashedpassword,    
         });
         console.log("USER SAVED:", user);
-
+     
     return resp.sendFile(
         path.join(__dirname, "../views/index.html")
     );
@@ -76,9 +77,16 @@ router.post("/login", async(req,resp)=>{
      if(!isMatch){
        return resp.status(401).send("Invalid email or password");
      }
-      return resp.status(200).sendFile(
-        path.join(__dirname, "../views/index.html"));
 
+     req.session.user={
+            id: findUser._id,
+            name: findUser.firstname,
+            profilePic: findUser.profilePic
+
+        }
+
+
+return resp.redirect("/");
     
    }
    catch(error){
@@ -86,5 +94,40 @@ router.post("/login", async(req,resp)=>{
    }
 
 })
+
+router.get("/write",islogedin,(req,resp)=>{
+    resp.status(200).sendFile(
+    path.join(__dirname,"../views/write-blog.html")
+);
+});
+
+router.get("/api/write-check", islogedin, (req, resp) => {
+    resp.status(200).json({
+        success: true,
+        message: "allowed"
+    });
+});
+
+
+router.get("/me",(req,resp)=>{
+    if(!req.session.user){
+      return resp.status(401).json({
+        success:false,
+        message:"please login first"
+      });
+    }
+    return resp.status(200).json({
+        success:true,
+        user:req.session.user
+    });
+});
+
+
+
+router.get("/logout",(req,resp)=>{
+    resp.clearCookie("connect.sid");
+    resp.redirect("/");
+})
+
 
 export default router;

@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { connectDb } from "./middleware/db/connect.js";
-import router from "../routes/user.js";
+import { connectDb } from "./db/connect.js";
+import router from "./routes/user.js";
 
 import session from "express-session";
 
@@ -33,11 +33,15 @@ app.use(session
 
 
 app.get("/",(req,resp)=>{
+      console.log(req.session);
      resp.sendFile(path.join(__dirname, "views", "index.html"));
     
 })
 
+
 app.use("/", router);
+app.use("/uploads", express.static((path.join(__dirname, "uploads"))));
+app.use("/api", router);
 
 app.listen(port,()=>{
     console.log(`server running at port =${port}`)})

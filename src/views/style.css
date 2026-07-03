@@ -23,7 +23,8 @@ nav{
     height: 50px;
     position: sticky;
      top: 0;
-  overflow: hidden;
+  /* overflow: visible; */
+  z-index: 9999;
 
 }
 .nav-links{
@@ -67,9 +68,81 @@ li{
 
 }
 
-.loginbuttn{
-     padding-right: 65px;
-      font-size: 18px;
+.loginbuttn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 65px;
+    font-size: 18px;
+}
+
+.profile-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+#profile-pic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.arrow{
+    font-size: 12px;
+    transition: transform .3s;
+}
+
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+.dropdown-menu{
+    position: absolute;
+        top: calc(100% + 12px);  
+    right: 0;
+    background-color: white;
+     width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+.dropdown-menu.show{
+    display: flex;
+}
+.dropdown-menu a{
+    text-decoration: none;
+    color: black;
+    padding: 14px 18px;
+     transition: .2s;
+}
+
+.dropdown-menu a:hover{
+    background-color: #f2f2f2;
+    color: white;
+}
+
+/* #profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+} */
+
+#username {
+    display: inline-block;
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
 }
 .loginbuttn:hover{
     cursor: pointer;
@@ -150,6 +223,7 @@ li{
     aspect-ratio: 4 / 3;
     overflow: hidden;
     position: relative;
+    z-index: 1;
 }
 
 .featured-image{
@@ -163,3 +237,88 @@ li{
     color: #6b6560;
 }
 
+
+/* Logout Modal */
+
+.logout-modal{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100000;
+}
+
+.logout-box{
+
+    width: 340px;
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    animation: popup .25s ease;
+}
+
+.logout-box h2{
+    margin-bottom:10px;
+}
+
+.logout-box p{
+    color:#555;
+    margin-bottom:25px;
+}
+
+.logout-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.logout-buttons button{
+
+    padding:10px 22px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+#cancel-logout{
+    background:#ddd;
+}
+
+#confirm-logout{
+
+    background:#e63946;
+    color:white;
+}
+
+#confirm-logout:hover{
+    background:#c1121f;
+}
+
+@keyframes popup{
+
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}

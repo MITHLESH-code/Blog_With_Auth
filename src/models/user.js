@@ -26,7 +26,7 @@ const userSchema=new mongoose.Schema({
         required:true
       },
       
-      profilepic:{
+      profilePic:{
            url: { 
       type: String, 
       default: "/uploads/default-avatar.png"// Fallback avatar
